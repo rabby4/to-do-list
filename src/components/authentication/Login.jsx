@@ -1,17 +1,34 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form"
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthProvider";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
+    const { login } = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm()
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = (data) => {
+        login(data.email, data.password)
+            .then(result => {
+                console.log(result.user)
+                // const toastLoadingId = toast.loading('Logging in...')
+                // toast.success('Logged in successful!', { id: toastLoadingId })
+                navigate(location?.state ? location.state : '/')
+            })
+            .catch(error => {
+                console.log(error);
+                // toast.error('You entered wrong email and password!')
+            })
+        console.log(data)
+    }
 
     const googleLogin = () => {
 
