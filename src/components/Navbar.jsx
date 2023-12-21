@@ -22,7 +22,7 @@ const Navbar = () => {
 
     return (
         <div className="bg-[#64c5b1]">
-            <div className="navbar max-w-7xl mx-auto  py-2">
+            <div className="navbar max-w-7xl mx-auto py-2">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -32,7 +32,9 @@ const Navbar = () => {
                             {navLinks}
                         </ul>
                     </div>
-                    <img className="w-48" src={logo} alt="" />
+                    <Link to='/'>
+                        <img className="w-48" src={logo} alt="" />
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className=" menu-horizontal px-1 text-lg text-white">
@@ -62,7 +64,7 @@ const Navbar = () => {
                             </ul>
                         </div>
                             :
-                            <Link to='/login'><button className="py-2 rounded font-semibold bg-[#f96a74] hover:bg-[#ff545f] text-white border-none px-8">Login</button></Link>
+                            <Link to='/login'><button className="py-2 text-lg rounded font-semibold bg-[#f96a74] hover:bg-[#ff545f] text-white border-none px-8">Login</button></Link>
                     }
                 </div>
             </div>
