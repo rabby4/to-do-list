@@ -1,17 +1,43 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form"
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false)
+    const { createUser } = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm()
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = (data) => {
+        createUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                updateProfile(result.user, {
+                    displayName: data.name,
+                    photoURL: data.photo
+
+                })
+                    .then(() => {
+                        console.log(user.displayName)
+                        navigate(location?.state ? location.state : '/')
+                    })
+                // toast.success('Registration Successful!')
+            })
+            .catch(error => {
+                console.log(error)
+                // toast.error('Registration Failed!')
+            })
+        console.log(data)
+    }
 
     const googleLogin = () => {
 
