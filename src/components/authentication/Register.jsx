@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 import { updateProfile } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false)
@@ -30,11 +31,11 @@ const Register = () => {
                         console.log(user.displayName)
                         navigate(location?.state ? location.state : '/')
                     })
-                // toast.success('Registration Successful!')
+                toast.success('Registration Successful!')
             })
             .catch(error => {
                 console.log(error)
-                // toast.error('Registration Failed!')
+                toast.error('Registration Failed!')
             })
         console.log(data)
     }

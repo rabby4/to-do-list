@@ -1,22 +1,26 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from '../assets/logo-light.png'
+import { AuthContext } from "./authentication/AuthProvider";
+import toast from "react-hot-toast";
 // import useAuth from "../hooks/useAuth";
 
 
 const Navbar = () => {
-    // const { user, logout } = useAuth()
-    const { user, logout } = useState()
+    const { user, logout } = useContext(AuthContext)
 
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/addFood'>About Us</NavLink></li>
-        <li><NavLink to='/availableFood'>Blog</NavLink></li>
-        <li><NavLink to='/manageFood'>Contact Us</NavLink></li>
+        <li><NavLink to='/about-us'>About Us</NavLink></li>
+        <li><NavLink to='/blog'>Blog</NavLink></li>
+        <li><NavLink to='/contact-us'>Contact Us</NavLink></li>
+        <li><NavLink to='/dashboard/to-do-list'>Dashboard</NavLink></li>
     </>
     const signOut = () => {
         logout()
-            .then()
+            .then(
+                toast.success("Successfully Logged Out")
+            )
             .catch()
     }
 

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
@@ -19,13 +20,13 @@ const Login = () => {
         login(data.email, data.password)
             .then(result => {
                 console.log(result.user)
-                // const toastLoadingId = toast.loading('Logging in...')
-                // toast.success('Logged in successful!', { id: toastLoadingId })
+                const toastLoadingId = toast.loading('Logging in...')
+                toast.success('Logged in successful!', { id: toastLoadingId })
                 navigate(location?.state ? location.state : '/')
             })
             .catch(error => {
                 console.log(error);
-                // toast.error('You entered wrong email and password!')
+                toast.error('You entered wrong email and password!')
             })
         console.log(data)
     }
