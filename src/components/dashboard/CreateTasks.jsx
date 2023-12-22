@@ -4,22 +4,38 @@ import toast from "react-hot-toast";
 import { v4 as uuidv4 } from 'uuid';
 
 const CreateTasks = ({ tasks, setTasks }) => {
-    // const [task, setTask] = useState({
-    //     id: '',
-    //     name: '',
-    //     status: 'todo'
-    // })
-    const [task, setTask] = useState({})
+    const [task, setTask] = useState({
+        id: '',
+        name: '',
+        status: 'todo'
+    })
+    // const [task, setTask] = useState({})
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm()
+    // const {
+    //     register,
+    //     handleSubmit,
+    //     formState: { errors },
+    // } = useForm()
 
-    const onSubmit = (data) => {
-        console.log(data)
-        setTask(data)
+    // const onSubmit = (data) => {
+    //     console.log(data)
+    //     setTask(data)
+    //     setTasks((prev) => {
+    //         const list = [...prev, task]
+
+    //         // set localStorage
+    //         localStorage.setItem("tasks", JSON.stringify(list))
+    //         return list
+    //     })
+    //     toast.success('task created')
+    // }
+
+    console.log(task)
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (task?.name?.length < 3) {
+            return toast.error("name should at least 3 character")
+        }
         setTasks((prev) => {
             const list = [...prev, task]
 
@@ -29,35 +45,17 @@ const CreateTasks = ({ tasks, setTasks }) => {
         })
         toast.success('task created')
     }
-
-    // console.log(task)
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     if (task.name.length < 3) {
-    //         return toast.error("name should at least 3 character")
-    //     }
-    //     setTasks((prev) => {
-    //         const list = [...prev, task]
-
-    // set localStorage
-    //         localStorage.setItem("tasks", JSON.stringify(list))
-
-
-    //         return list
-    //     })
-    //     toast.success('task created')
-    // }
     return (
         <>
             <div className="w-full px-24">
-                {/* <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <input type="text" name="" id="" className="border-2 border-slate-400 bg-slate-100 rounded-md mr-4 h-12 w-64 px-0"
                         onChange={(e) => setTask({ ...task, id: uuidv4(), name: e.target.value })}
                         value={task.name} />
 
                     <button className="bg-cyan-500 rounded-md px-4 h-12 text-white">Create</button>
-                </form> */}
-                <section className="w-full">
+                </form>
+                {/* <section className="w-full">
                     <div className="w-full">
                         <div className='text-center'>
                             <h1 className="text-6xl font-bold capitalize my-10">Register Now</h1>
@@ -105,7 +103,7 @@ const CreateTasks = ({ tasks, setTasks }) => {
                             </form>
                         </div>
                     </div>
-                </section>
+                </section> */}
             </div>
 
         </>

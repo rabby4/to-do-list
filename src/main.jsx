@@ -12,6 +12,9 @@ import AuthProvider from './components/authentication/AuthProvider';
 import { Toaster } from 'react-hot-toast';
 import Dashboard from './components/dashboard/Dashboard';
 import ToDoList from './components/dashboard/ToDoList';
+import About from './components/About';
+import Contact from './components/Contact';
+import Blog from './components/Blog';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +32,18 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
+      },
+      {
+        path: '/about-us',
+        element: <About></About>
+      },
+      {
+        path: '/contact-us',
+        element: <Contact></Contact>
+      },
+      {
+        path: '/blog',
+        element: <Blog></Blog>
       },
       {
         path: 'dashboard',

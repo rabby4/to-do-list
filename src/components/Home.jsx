@@ -4,9 +4,12 @@ import { FaUsersCog, FaUserTie } from "react-icons/fa";
 import { TbUserDollar } from "react-icons/tb";
 import { IoIosConstruct } from "react-icons/io";
 import { FaUserAstronaut } from "react-icons/fa6";
+import { useContext } from 'react';
+import { AuthContext } from './authentication/AuthProvider';
 
 
 const Home = () => {
+    const { user } = useContext(AuthContext)
     return (
         <>
             <section>
@@ -18,7 +21,7 @@ const Home = () => {
                         <div className="w-1/2">
                             <h1 className="text-7xl font-bold">Move Work Forward Together</h1>
                             <p className="py-6 text-xl">Adminox is the ecommerce helpdesk center that turns your customer service into a profit center without any delay and increase your sale.</p>
-                            <Link to='/login'>
+                            <Link to={user ? '/dashboard/to-do-list' : '/login'}>
                                 <button className="btn text-xl py-2 rounded bg-[#f96a74] hover:bg-[#ff545f] text-white border-none px-8">Let’s explore</button>
                             </Link>
                         </div>

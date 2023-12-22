@@ -9,9 +9,9 @@ const ListTasks = ({ tasks, setTasks }) => {
     const [closed, setClosed] = useState([])
 
     useEffect(() => {
-        const fToDos = tasks.filter((task) => task.status === 'todo')
-        const fInProgress = tasks.filter((task) => task.status === 'inprogress')
-        const fClosed = tasks.filter((task) => task.status === 'closed')
+        const fToDos = tasks?.filter((task) => task.status === 'todo')
+        const fInProgress = tasks?.filter((task) => task.status === 'inprogress')
+        const fClosed = tasks?.filter((task) => task.status === 'closed')
 
         setToDos(fToDos);
         setInProgress(fInProgress)
@@ -78,10 +78,10 @@ const Section = ({ status, tasks, setTasks, toDos, inProgress, closed }) => {
     return (
         <>
             <div ref={drop} className={`w-full rounded-md ${isOver ? 'bg-slate-200' : ''}`}>
-                <Header text={text} bg={bg} count={tasksToMap.length}></Header>
+                <Header text={text} bg={bg} count={tasksToMap?.length}></Header>
                 <div className="text-left">
                     {
-                        tasksToMap.length > 0 && tasksToMap.map(task => <Task key={task.id} task={task} tasks={tasks} setTasks={setTasks}></Task>)
+                        tasksToMap?.length > 0 && tasksToMap.map(task => <Task key={task.id} task={task} tasks={tasks} setTasks={setTasks}></Task>)
                     }
                 </div>
             </div>
@@ -111,7 +111,7 @@ const Task = ({ task, tasks, setTasks }) => {
 
     const handleRemove = (id) => {
         console.log(id)
-        const fTasks = tasks.filter(task => task.id !== id)
+        const fTasks = tasks?.filter(task => task.id !== id)
         localStorage.setItem('tasks', JSON.stringify(fTasks))
         setTasks(fTasks)
         toast.success('Task successfully removed')

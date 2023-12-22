@@ -14,7 +14,7 @@ const Navbar = () => {
         <li><NavLink to='/about-us'>About Us</NavLink></li>
         <li><NavLink to='/blog'>Blog</NavLink></li>
         <li><NavLink to='/contact-us'>Contact Us</NavLink></li>
-        <li><NavLink to='/dashboard/to-do-list'>Dashboard</NavLink></li>
+
     </>
     const signOut = () => {
         logout()
@@ -56,14 +56,14 @@ const Navbar = () => {
                                     }
                                 </div>
                             </label>
-                            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu text-xl menu-sm dropdown-content bg-base-100 rounded-box w-52">
                                 <li>
                                     <a className="justify-between">
                                         {user?.displayName}
                                         <span className="badge">New</span>
                                     </a>
                                 </li>
-
+                                <li className="font-semibold"><Link to='/dashboard/to-do-list'>Dashboard</Link></li>
                                 <li><button onClick={signOut} className="font-semibold" >Log Out</button></li>
                             </ul>
                         </div>

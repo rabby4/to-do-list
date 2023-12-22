@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
-    const { login } = useContext(AuthContext)
+    const { login, googleSignIn } = useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
 
@@ -32,7 +32,18 @@ const Login = () => {
     }
 
     const googleLogin = () => {
+        googleSignIn()
+            .then(result => {
+                console.log(result.user)
+                const toastLoadingId = toast.loading('Logging in...')
+                toast.success('Successfully login with Google!', { id: toastLoadingId })
+                navigate(location?.state ? location.state : '/')
 
+            })
+            .catch(error => {
+                console.log(error)
+                toast.error('Login failed! Try again')
+            })
     }
     return (
         <>
